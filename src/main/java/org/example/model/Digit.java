@@ -2,7 +2,7 @@ package org.example.model;
 
 import java.util.Objects;
 
-public class Digit implements Operand {
+public class Digit implements Node {
 
     private final int value;
 
@@ -29,5 +29,10 @@ public class Digit implements Operand {
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    @Override
+    public int eval() {
+        return this.value;
     }
 }

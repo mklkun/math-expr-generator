@@ -1,19 +1,19 @@
 package org.example.controller;
 
 import org.example.model.Digit;
+import org.example.model.Node;
 import org.example.model.Operator;
-import org.example.model.TreeNode;
 
 public class Generator {
 
-    public TreeNode generate(String mathExpression) {
+    public Node generate(String mathExpression) {
         if (mathExpression.startsWith("[")) {
             int nextSeparatorIndex = findNextSeparatorIndex(mathExpression.substring(3, mathExpression.length()-1)) + 3;
-            return new TreeNode(new Operator(mathExpression.substring(1, 2)),
+            return new Operator(mathExpression.substring(1, 2),
                     generate(mathExpression.substring(3, nextSeparatorIndex)),
                     generate(mathExpression.substring(nextSeparatorIndex + 1, mathExpression.length()-1)));
         }
-        return new TreeNode(new Digit(mathExpression));
+        return new Digit(mathExpression);
     }
 
     private int findNextSeparatorIndex(String substring) {
