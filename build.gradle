@@ -12,8 +12,8 @@ repositories {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 dependencies {
@@ -34,7 +34,7 @@ test {
 
 sonarqube {
     properties {
-        property "sonar.projectKey", "mklkun_j11template"
+        property "sonar.projectKey", "mklkun_math-expr-generator"
         property "sonar.organization", "mklkun"
         property "sonar.host.url", "https://sonarcloud.io"
     }
