@@ -12,33 +12,13 @@ public class Operator implements Node {
     }
 
     private final OperatorType type;
-
-    private Node left;
-    private Node right;
+    private final Node left;
+    private final Node right;
 
     public Operator(OperatorType type, Node left, Node right) {
         this.type = type;
         this.left = left;
         this.right = right;
-    }
-
-    public Operator(String operatorStr) {
-        switch (operatorStr) {
-            case "*":
-                type = OperatorType.MULTIPLICATION;
-                break;
-            case "/":
-                type = OperatorType.DIVISION;
-                break;
-            case "+":
-                type = OperatorType.ADDITION;
-                break;
-            default:
-                type = OperatorType.SUBTRACTION;
-                break;
-        }
-        this.left = null;
-        this.right = null;
     }
 
     public Operator(String operatorStr, Node left, Node right) {
@@ -72,12 +52,17 @@ public class Operator implements Node {
         return right;
     }
 
-    public void setLeft(Node left) {
-        this.left = left;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Operator operator = (Operator) o;
+        return type == operator.type;
     }
 
-    public void setRight(Node right) {
-        this.right = right;
+    @Override
+    public int hashCode() {
+        return Objects.hash(type);
     }
 
     public int eval() {
@@ -91,18 +76,5 @@ public class Operator implements Node {
             default:
                 return this.left.eval() - this.right.eval();
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Operator operator = (Operator) o;
-        return type == operator.type;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(type);
     }
  }
